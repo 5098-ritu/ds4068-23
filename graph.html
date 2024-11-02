@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Questions</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+    <script>
+        function showProgram(questionNumber) {
+            // Hide all code and output sections
+            document.querySelectorAll('.code-container, .output-container').forEach((el) => {
+                el.style.display = 'none';
+            });
+
+            // Show the selected question's code and output
+            document.getElementById('code' + questionNumber).style.display = 'block';
+            document.getElementById('output' + questionNumber).style.display = 'block';
+
+            // Show the code-output container
+            document.getElementById('output-container').style.display = 'flex';
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="program.html">Programs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+      
+        </ul>
+    </nav>
+<div class="container">
+    <div class="question-list">
+        <h2><center>Graphs  Questions</center></h2>
+        <ul>
+            <li><a href="#" onclick="showProgram(1)">1. Enter the vertices and edges and represent in adjacency matrix and print it.</a></li>
+            <li><a href="#" onclick="showProgram(2)">2. Create the graph as an adjacency list with operations such as insertion, deletion.</a></li>
+            <li><a href="#" onclick="showProgram(3)">3. Traverse the adjacency matrix with depth first search.</a></li>
+            <li><a href="#" onclick="showProgram(4)">4. Traverse the adjacency list with depth first search.</a></li>
+            <li><a href="#" onclick="showProgram(5)">5. Traverse the adjacency matrix with breadth first search.</a></li>
+            <li><a href="#" onclick="showProgram(6)">6. Traverse the adjacency list with breadth first search.</a></li>
+        </ul>
+        
+    </div>
+    <div class="code-output-container" id="output-container">
+        <div class="code-container" id="code1">
+            <h2>Code</h2>
+            <pre><code><center>
+
+
+#include< stdio.h >
+#include< stdlib.h >
+
+void initMatrix(int **matrix, int size) {
+for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+        matrix[i][j] = 0; 
+    }
+}
+}
+void addEdge(int **matrix, int src, int dest) {
+             matrix[src][dest] = 1; 
+             matrix[dest][src] = 1; 
+}
+void printMatrix(int **matrix, int size) {
+printf("Adjacency Matrix:\n");
+for (int i = 0; i < size; i++) {
+    for (int j = 0; j < size; j++) {
+        printf("%d ", matrix[i][j]);
+    }
+    printf("\n");
+ }
+ }
+int main() {
+int vertices, edges;
+printf("Enter number of vertices: ");
+scanf("%d", &vertices);
+int *matrix = (int *)malloc(vertices * sizeof(int *));
+for (int i = 0; i < vertices; i++) {
+    matrix[i] = (int *)malloc(vertices * sizeof(int));
+}
+
+initMatrix(matrix, vertices);
+
+printf("Enter number of edges: ");
+scanf("%d", &edges);
+
+for (int i = 0; i < edges; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    addEdge(matrix, src, dest);
+}
+
+printMatrix(matrix, vertices);
+
+for (int i = 0; i < vertices; i++) {
+    free(matrix[i]);
+}
+free(matrix);
+
+return 0;
+}
+
+
+
+         </center>  </code></pre>
+        </div>
+        <div class="output-container" id="output1">
+            <h2>Output</h2>
+            <pre><code><center>
+
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+Adjacency Matrix:
+0 1 1 0 
+1 0 1 0 
+1 1 0 1 
+0 0 1 0 
+
+
+
+
+
+           </center> </code></pre>
+        </div>
+
+        <div class="code-container" id="code2" style="display:none;">
+            <h2>Code</h2>
+            <pre><code><center>
+
+#include< stdio.h >
+#include< stdlib.h >
+
+struct Node {
+int dest;
+struct Node* next;
+};
+
+struct Graph {
+int vertices;
+struct Node** adjList;
+};
+
+struct Graph* createGraph(int vertices) {
+struct Graph* graph = malloc(sizeof(struct Graph));
+graph->vertices = vertices;
+graph->adjList = malloc(vertices * sizeof(struct Node*));
+
+for (int i = 0; i < vertices; i++) {
+    graph->adjList[i] = NULL;
+}
+return graph;
+}
+
+struct Node* createNode(int dest) {
+struct Node* newNode = malloc(sizeof(struct Node));
+newNode->dest = dest;
+newNode->next = NULL;
+return newNode;
+}
+
+void insertEdge(struct Graph* graph, int src, int dest) {
+struct Node* newNode = createNode(dest);
+newNode->next = graph->adjList[src];
+graph->adjList[src] = newNode;
+}
+
+void deleteEdge(struct Graph* graph, int src, int dest) {
+struct Node* temp = graph->adjList[src];
+struct Node* prev = NULL;
+
+while (temp != NULL && temp->dest != dest) {
+    prev = temp;
+    temp = temp->next;
+}
+
+if (temp != NULL) {
+    if (prev == NULL) {
+        graph->adjList[src] = temp->next;
+    } else {
+        prev->next = temp->next;
+    }
+    free(temp);
+}
+}
+
+void printGraph(struct Graph* graph) {
+for (int i = 0; i < graph->vertices; i++) {
+    struct Node* temp = graph->adjList[i];
+    printf("Vertex %d: ", i);
+    while (temp) {
+        printf("%d -> ", temp->dest);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+}
+
+int main() {
+int vertices, edges;
+printf("Enter number of vertices: ");
+scanf("%d", &vertices);
+
+struct Graph* graph = createGraph(vertices);
+
+printf("Enter number of edges: ");
+scanf("%d", &edges);
+
+for (int i = 0; i < edges; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    insertEdge(graph, src, dest);
+}
+
+printf("\nAdjacency List Representation:\n");
+printGraph(graph);
+
+int srcDel, destDel;
+printf("Enter edge to delete (source destination): ");
+scanf("%d %d", &srcDel, &destDel);
+deleteEdge(graph, srcDel, destDel);
+
+printf("\nAdjacency List after deletion:\n");
+printGraph(graph);
+
+for (int i = 0; i < vertices; i++) {
+    struct Node* temp = graph->adjList[i];
+    while (temp) {
+        struct Node* toFree = temp;
+        temp = temp->next;
+        free(toFree);
+    }
+}
+free(graph->adjList);
+free(graph);
+
+return 0;
+}
+
+
+         </center> </code></pre></div>
+
+<div class="output-container" id="output2" style="display:none;">
+            <h2>Output</h2>
+            <pre><code><center>
+
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+
+Adjacency List Representation:
+Vertex 0: 2 -> 1 -> NULL
+Vertex 1: 2 -> NULL
+Vertex 2: 3 -> 1 -> NULL
+Vertex 3: NULL
+
+Enter edge to delete (source destination): 0 1
+
+Adjacency List after deletion:
+Vertex 0: 2 -> NULL
+Vertex 1: 2 -> NULL
+Vertex 2: 3 -> NULL
+Vertex 3: NULL
+          
+</center> </code></pre> </div>
+
+
+<div class="code-container" id="code3" style="display:none;">
+            <h2>Code</h2>
+            <pre><code><center>
+
+
+#include< stdio.h >
+#include< stdlib.h >
+
+void dfs(int graph[][10], int visited[], int v, int n) {
+visited[v] = 1;
+printf("%d ", v);
+
+for (int i = 0; i < n; i++) {
+    if (graph[v][i] == 1 && !visited[i]) {
+        dfs(graph, visited, i, n);
+    }
+}
+}
+int main() {
+int n, e;
+printf("Enter number of vertices: ");
+scanf("%d", &n);
+
+int graph[10][10] = {0};
+printf("Enter number of edges: ");
+scanf("%d", &e);
+
+for (int i = 0; i < e; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    graph[src][dest] = 1;
+    graph[dest][src] = 1;
+}
+
+int visited[10] = {0};
+
+printf("DFS starting from vertex 0:\n");
+dfs(graph, visited, 0, n);
+
+printf("\n");
+return 0;
+}
+
+</center></code></pre></div>
+ 
+ 
+        <div class="output-container" id="output3" style="display:none;">
+            <h2>Output</h2>
+            <pre><code><center>
+
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+
+DFS starting from vertex 0:
+0 1 2 3 
+
+
+            </center></code></pre>
+        </div>
+<div class="code-container" id="code4" style="display:none;">
+            <h2>Code</h2>
+            <pre><code><center>
+
+#include< stdio.h >
+#include< stdlib.h >
+
+struct Node {
+int dest;
+struct Node* next;
+};
+
+struct Graph {
+int vertices;
+struct Node** adjList;
+};
+
+struct Graph* createGraph(int vertices) {
+struct Graph* graph = malloc(sizeof(struct Graph));
+graph->vertices = vertices;
+graph->adjList = malloc(vertices * sizeof(struct Node*));
+
+for (int i = 0; i < vertices; i++) {
+    graph->adjList[i] = NULL;
+}
+return graph;
+}
+
+struct Node* createNode(int dest) {
+struct Node* newNode = malloc(sizeof(struct Node));
+newNode->dest = dest;
+newNode->next = NULL;
+return newNode;
+}
+
+void insertEdge(struct Graph* graph, int src, int dest) {
+struct Node* newNode = createNode(dest);
+newNode->next = graph->adjList[src];
+graph->adjList[src] = newNode;
+}
+
+void dfs(struct Graph* graph, int visited[], int vertex) {
+visited[vertex] = 1;
+printf("%d ", vertex);
+
+struct Node* temp = graph->adjList[vertex];
+while (temp) {
+    if (!visited[temp->dest]) {
+        dfs(graph, visited, temp->dest);
+    }
+    temp = temp->next;
+}
+}
+
+int main() {
+int vertices, edges;
+printf("Enter number of vertices: ");
+scanf("%d", &vertices);
+
+struct Graph* graph = createGraph(vertices);
+
+printf("Enter number of edges: ");
+scanf("%d", &edges);
+
+for (int i = 0; i < edges; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    insertEdge(graph, src, dest);
+    insertEdge(graph, dest, src); 
+}
+
+int visited[vertices];
+for (int i = 0; i < vertices; i++) {
+    visited[i] = 0;
+}
+
+printf("DFS starting from vertex 0:\n");
+dfs(graph, visited, 0);
+
+printf("\n");
+
+for (int i = 0; i < vertices; i++) {
+    struct Node* temp = graph->adjList[i];
+    while (temp) {
+        struct Node* toFree = temp;
+        temp = temp->next;
+        free(toFree);
+    }
+}
+free(graph->adjList);
+free(graph);
+
+return 0;
+}
+
+</center></code></pre>
+        </div>
+
+<div class="output-container" id="output4" style="display:none;">
+            <h2>Output</h2>
+            <pre><code><center>
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+
+DFS starting from vertex 0:
+0 1 2 3 
+
+
+</center></code></pre>
+        </div>
+<div class="code-container" id="code5" style="display:none;">
+            <h2>Code</h2>
+            <pre><code><center>
+
+#include< stdio.h >
+#include< stdlib.h >
+
+#define MAX_VERTICES 10
+
+void bfs(int g[MAX_VERTICES][MAX_VERTICES], int vis[], int start, int n) {
+int queue[MAX_VERTICES], front = 0, rear = 0;
+vis[start] = 1;
+queue[rear++] = start;
+
+while (front < rear) {
+    int curr = queue[front++];
+    printf("%d ", curr);
+
+    for (int i = 0; i < n; i++) {
+        if (g[curr][i] == 1 && !vis[i]) {
+            vis[i] = 1;
+            queue[rear++] = i;
+        }
+    }
+}
+}
+int main() {
+int n, e;
+printf("Enter number of vertices: ");
+scanf("%d", &n);
+
+int graph[MAX_VERTICES][MAX_VERTICES] = {0};
+printf("Enter number of edges: ");
+scanf("%d", &e);
+for (int i = 0; i < e; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    graph[src][dest] = 1;
+    graph[dest][src] = 1; 
+}
+
+int visited[MAX_VERTICES] = {0};
+printf("BFS starting from vertex 0:\n");
+bfs(graph, visited, 0, n);
+printf("\n");
+return 0;
+}
+
+
+</center></code></pre>
+        </div>
+<div class="output-container" id="output5" style="display:none;">
+            <h2>Output</h2>
+            <pre><code><center>
+
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+
+BFS starting from vertex 0:
+0 1 2 3 
+
+
+
+
+</center></code></pre>
+        </div>
+<div class="code-container" id="code6" style="display:none;">
+            <h2>Code</h2>
+            <pre><code><center>
+
+#include< stdio.h >
+#include< stdlib.h >
+
+struct Node {
+int dest;
+struct Node* next;
+};
+
+struct Graph {
+int vertices;
+struct Node** adjList;
+};
+
+struct Graph* createGraph(int vertices) {
+struct Graph* graph = malloc(sizeof(struct Graph));
+graph->vertices = vertices;
+graph->adjList = malloc(vertices * sizeof(struct Node*));
+
+for (int i = 0; i < vertices; i++) {
+    graph->adjList[i] = NULL;
+}
+return graph;
+}
+
+struct Node* createNode(int dest) {
+struct Node* newNode = malloc(sizeof(struct Node));
+newNode->dest = dest;
+newNode->next = NULL;
+return newNode;
+}
+
+void insertEdge(struct Graph* graph, int src, int dest) {
+struct Node* newNode = createNode(dest);
+newNode->next = graph->adjList[src];
+graph->adjList[src] = newNode;
+}
+
+void bfs(struct Graph* graph, int start) {
+int visited[graph->vertices];
+for (int i = 0; i < graph->vertices; i++) {
+    visited[i] = 0;
+}
+
+int queue[graph->vertices], front = 0, rear = 0;
+visited[start] = 1;
+queue[rear++] = start;
+
+while (front < rear) {
+    int curr = queue[front++];
+    printf("%d ", curr);
+
+    struct Node* temp = graph->adjList[curr];
+    while (temp) {
+        if (!visited[temp->dest]) {
+            visited[temp->dest] = 1;
+            queue[rear++] = temp->dest;
+        }
+        temp = temp->next;       }
+}
+}
+int main() {
+int vertices, edges;
+printf("Enter number of vertices: ");
+scanf("%d", &vertices);
+
+struct Graph* graph = createGraph(vertices);
+
+printf("Enter number of edges: ");
+scanf("%d", &edges);
+
+for (int i = 0; i < edges; i++) {
+    int src, dest;
+    printf("Enter edge (source destination): ");
+    scanf("%d %d", &src, &dest);
+    insertEdge(graph, src, dest);
+    insertEdge(graph, dest, src); 
+}
+printf("BFS starting from vertex 0:\n");
+bfs(graph, 0);
+
+printf("\n");
+
+for (int i = 0; i < vertices; i++) {
+    struct Node* temp = graph->adjList[i];
+    while (temp) {
+        struct Node* toFree = temp;
+        temp = temp->next;
+        free(toFree);
+    }
+}
+free(graph->adjList);
+free(graph);
+
+return 0;
+}
+
+
+</center></code></pre>
+        </div>
+<div class="output-container" id="output6" style="display:none;">
+            <h2>Output</h2>
+            <pre><code><center>
+
+Enter number of vertices: 4
+Enter number of edges: 4
+Enter edge (source destination): 0 1
+Enter edge (source destination): 0 2
+Enter edge (source destination): 1 2
+Enter edge (source destination): 2 3
+
+BFS starting from vertex 0:
+0 1 2 3 
+
+
+
+
+</center></code></pre>
+        </div>
+    </div>
+</div>
+</body>
+</html>  

@@ -1,0 +1,2199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Questions</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+    <script>
+        function showProgram(questionNumber) {
+            // Hide all code and output sections
+            document.querySelectorAll('.code-container, .output-container').forEach((el) => {
+                el.style.display = 'none';
+            });
+
+            // Show the selected question's code and output
+            document.getElementById('code' + questionNumber).style.display = 'block';
+            document.getElementById('output' + questionNumber).style.display = 'block';
+
+            // Show the code-output container
+            document.getElementById('output-container').style.display = 'flex';
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="program.html">Programs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="question-list">
+            <h2>Sorting Programs:</h2>
+            <ul>
+                <li><a href="#" onclick="showProgram(1)">1. Enter a integer array from the user and perform selection sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(2)">2. Enter a integer array from the user and perform selection sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(3)">3. Enter a integer array from the user and perform bubble sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(4)">4. Enter a integer array from the user and perform bubble sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(5)">5. Enter a integer array from the user and perform insertion sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(6)">6. Enter a integer array from the user and perform insertion sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(7)">7. Enter a integer array from the user and perform merge sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(8)">8. Enter a integer array from the user and perform merge sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(9)">9. Enter a integer array from the user and perform quick sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(10)">10. Enter a integer array from the user and perform quick sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(11)">11. Enter a string array from the user and perform selection sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(12)">12. Enter a string array from the user and perform selection sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(13)">13. Enter a string array from the user and perform bubble sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(14)">14. Enter a string array from the user and perform bubble sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(15)">15. Enter a string array from the user and perform insertion sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(16)">16. Enter a string array from the user and perform insertion sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(17)">17. Enter a string array from the user and perform merge sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(18)">18. Enter a string array from the user and perform merge sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(19)">19. Enter a string array from the user and perform quick sort algorithm through iteration. Also calculate the worst and best complexity with exact time.</a></li>
+                <li><a href="#" onclick="showProgram(20)">20. Enter a string array from the user and perform quick sort algorithm through recursion. Also calculate the worst and best complexity with exact time.</a></li>
+            </ul>
+            
+        </div>
+        <div class="code-output-container" id="output-container">
+        <div class="code-container" id="code1">
+            <h2>Code</h2>
+            <pre>
+    <code> 
+        #include < stdio.h>
+
+            void selection_sort(int arr[], int n) {
+                int i, j, min_index, temp;
+            
+                for (i = 0; i < n - 1; i++) {
+                    min_index = i;
+                    for (j = i + 1; j < n; j++) {
+                        if (arr[j] < arr[min_index]) {
+                            min_index = j;
+                        }
+                    }
+                    temp = arr[min_index];
+                    arr[min_index] = arr[i];
+                    arr[i] = temp;
+                }
+            }
+            
+            int main() {
+                int n;
+            
+                printf("Enter the number of elements: ");
+                scanf("%d", &n);
+            
+                int arr[n];
+            
+                printf("Enter %d integers:\n", n);
+                for (int i = 0; i < n; i++) {
+                    scanf("%d", &arr[i]);
+                }
+            
+                clock_t start = clock();
+                selection_sort(arr, n);
+                clock_t end = clock();
+            
+                double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+            
+                printf("Sorted array:\n");
+                for (int i = 0; i < n; i++) {
+                    printf("%d ", arr[i]);
+                }
+                printf("\nTime taken for sorting: %f seconds\n", time_taken);
+            
+                printf("\nSelection Sort Complexity:\n");
+                printf("Best Case: O(n^2)\n");
+                printf("Worst Case: O(n^2)\n");
+                printf("Average Case: O(n^2)\n");
+            
+                return 0;
+            }
+            
+         
+   </code></pre>
+        </div>
+        <div class="output-container" id="output1">
+            <h2>Output</h2>
+            <pre>
+    <code>
+        Enter the number of elements: 5
+        Enter 5 integers:
+        34 7 23 32 5
+        Sorted array:
+        5 7 23 32 34
+        Time taken for sorting: 0.000123 seconds
+        
+        Selection Sort Complexity:
+        Best Case: O(n^2)
+        Worst Case: O(n^2)
+        Average Case: O(n^2)
+                 
+    </code></pre>
+        </div> 
+        <div class="code-container" id="code2">
+            <h2>Code</h2>
+            <pre>
+        <code>
+            #include < stdio.h>
+                #include < time.h>
+                
+                void recursive_selection_sort(int arr[], int n, int index) {
+                    if (index == n - 1) {
+                        return;
+                    }
+                
+                    int min_index = index;
+                    for (int j = index + 1; j < n; j++) {
+                        if (arr[j] < arr[min_index]) {
+                            min_index = j;
+                        }
+                    }
+                
+                    if (min_index != index) {
+                        int temp = arr[min_index];
+                        arr[min_index] = arr[index];
+                        arr[index] = temp;
+                    }
+                
+                    recursive_selection_sort(arr, n, index + 1);
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements: ");
+                    scanf("%d", &n);
+                
+                    int arr[n];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    recursive_selection_sort(arr, n, 0);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nSelection Sort Complexity:\n");
+                    printf("Best Case: O(n^2)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                       
+      </code></pre>
+        </div>
+        <div class="output-container" id="output2">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements: 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Selection Sort Complexity:
+            Best Case: O(n^2)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                  
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code3">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                void bubble_sort(int arr[], int n) {
+                    for (int i = 0; i < n - 1; i++) {
+                        for (int j = 0; j < n - i - 1; j++) {
+                            if (arr[j] > arr[j + 1]) {
+                                // Swap arr[j] and arr[j + 1]
+                                int temp = arr[j];
+                                arr[j] = arr[j + 1];
+                                arr[j + 1] = temp;
+                            }
+                        }
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements: ");
+                    scanf("%d", &n);
+                
+                    int arr[n];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    bubble_sort(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nBubble Sort Complexity:\n");
+                    printf("Best Case: O(n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                       
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output3">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements: 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Bubble Sort Complexity:
+            Best Case: O(n)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                  
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code4">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                void bubble_sort_recursive(int arr[], int n) {
+                    if (n == 1) {
+                        return;
+                    }
+                
+                    for (int j = 0; j < n - 1; j++) {
+                        if (arr[j] > arr[j + 1]) {
+                            // Swap arr[j] and arr[j + 1]
+                            int temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
+                    }
+                
+                    bubble_sort_recursive(arr, n - 1);
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements: ");
+                    scanf("%d", &n);
+                
+                    int arr[n];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    bubble_sort_recursive(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nBubble Sort Complexity:\n");
+                    printf("Best Case: O(n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                    
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output4">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements: 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Bubble Sort Complexity:
+            Best Case: O(n)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                 
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code5">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                void insertion_sort(int arr[], int n) {
+                    for (int i = 1; i < n; i++) {
+                        int key = arr[i];
+                        int j = i - 1;
+                
+                        while (j >= 0 && arr[j] > key) {
+                            arr[j + 1] = arr[j];
+                            j--;
+                        }
+                        arr[j + 1] = key;
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements: ");
+                    scanf("%d", &n);
+                
+                    int arr[n];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    insertion_sort(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nInsertion Sort Complexity:\n");
+                    printf("Best Case: O(n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                       
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output5">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements: 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Insertion Sort Complexity:
+            Best Case: O(n)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                 
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code6">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                void insertion_sort_recursive(int arr[], int n) {
+                    if (n <= 1) {
+                        return;
+                    }
+                
+                    insertion_sort_recursive(arr, n - 1);
+                
+                    int key = arr[n - 1];
+                    int j = n - 2;
+                
+                    while (j >= 0 && arr[j] > key) {
+                        arr[j + 1] = arr[j];
+                        j--;
+                    }
+                    arr[j + 1] = key;
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements: ");
+                    scanf("%d", &n);
+                
+                    int arr[n];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    insertion_sort_recursive(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nInsertion Sort Complexity:\n");
+                    printf("Best Case: O(n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                       
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output6">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements: 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Insertion Sort Complexity:
+            Best Case: O(n)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                 
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code7">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 1000 // Define a maximum size for the array
+                
+                void merge(int arr[], int left, int mid, int right, int temp[]) {
+                    int i = left;
+                    int j = mid + 1;
+                    int k = left;
+                
+                    while (i <= mid && j <= right) {
+                        if (arr[i] <= arr[j]) {
+                            temp[k] = arr[i];
+                            i++;
+                        } else {
+                            temp[k] = arr[j];
+                            j++;
+                        }
+                        k++;
+                    }
+                
+                    while (i <= mid) {
+                        temp[k] = arr[i];
+                        i++;
+                        k++;
+                    }
+                
+                    while (j <= right) {
+                        temp[k] = arr[j];
+                        j++;
+                        k++;
+                    }
+                
+                    for (i = left; i <= right; i++) {
+                        arr[i] = temp[i];
+                    }
+                }
+                
+                void merge_sort_iterative(int arr[], int n) {
+                    int temp[MAX_SIZE]; // Auxiliary array for merging
+                    int current_size;
+                    int left_start;
+                
+                    for (current_size = 1; current_size < n; current_size *= 2) {
+                        for (left_start = 0; left_start < n - 1; left_start += 2 * current_size) {
+                            int mid = left_start + current_size - 1;
+                            int right_end = (left_start + 2 * current_size - 1 < n - 1) ? left_start + 2 * current_size - 1 : n - 1;
+                
+                            merge(arr, left_start, mid, right_end, temp);
+                        }
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of elements exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    int arr[MAX_SIZE];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    merge_sort_iterative(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nMerge Sort Complexity:\n");
+                    printf("Best Case: O(n log n)\n");
+                    printf("Worst Case: O(n log n)\n");
+                    printf("Average Case: O(n log n)\n");
+                
+                    return 0;
+                }
+                     
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output7">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements (max 1000): 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Merge Sort Complexity:
+            Best Case: O(n log n)
+            Worst Case: O(n log n)
+            Average Case: O(n log n)
+                   
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code8">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 1000 // Define a maximum size for the array
+                
+                void merge(int arr[], int left, int mid, int right) {
+                    int i, j, k;
+                    int temp[MAX_SIZE];
+                
+                    i = left; 
+                    j = mid + 1; 
+                    k = left; 
+                
+                    while (i <= mid && j <= right) {
+                        if (arr[i] <= arr[j]) {
+                            temp[k] = arr[i];
+                            i++;
+                        } else {
+                            temp[k] = arr[j];
+                            j++;
+                        }
+                        k++;
+                    }
+                
+                    while (i <= mid) {
+                        temp[k] = arr[i];
+                        i++;
+                        k++;
+                    }
+                
+                    while (j <= right) {
+                        temp[k] = arr[j];
+                        j++;
+                        k++;
+                    }
+                
+                    for (i = left; i <= right; i++) {
+                        arr[i] = temp[i];
+                    }
+                }
+                
+                void merge_sort_recursive(int arr[], int left, int right) {
+                    if (left < right) {
+                        int mid = left + (right - left) / 2;
+                
+                        merge_sort_recursive(arr, left, mid);
+                        merge_sort_recursive(arr, mid + 1, right);
+                
+                        merge(arr, left, mid, right);
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of elements exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    int arr[MAX_SIZE];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    merge_sort_recursive(arr, 0, n - 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nMerge Sort Complexity:\n");
+                    printf("Best Case: O(n log n)\n");
+                    printf("Worst Case: O(n log n)\n");
+                    printf("Average Case: O(n log n)\n");
+                
+                    return 0;
+                }
+                      
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output8">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements (max 1000): 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Merge Sort Complexity:
+            Best Case: O(n log n)
+            Worst Case: O(n log n)
+            Average Case: O(n log n)
+                  
+        </code></pre>
+        </div>
+        <div class="code-container" id="code9">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 1000
+                
+                void swap(int* a, int* b) {
+                    int temp = *a;
+                    *a = *b;
+                    *b = temp;
+                }
+                
+                int partition(int arr[], int low, int high) {
+                    int pivot = arr[high];
+                    int i = (low - 1);
+                    
+                    for (int j = low; j < high; j++) {
+                        if (arr[j] <= pivot) {
+                            i++;
+                            swap(&arr[i], &arr[j]);
+                        }
+                    }
+                    swap(&arr[i + 1], &arr[high]);
+                    return (i + 1);
+                }
+                
+                void quick_sort_iterative(int arr[], int n) {
+                    int stack[MAX_SIZE];
+                    int top = -1;
+                
+                    stack[++top] = 0;
+                    stack[++top] = n - 1;
+                
+                    while (top >= 0) {
+                        int high = stack[top--];
+                        int low = stack[top--];
+                
+                        int pivot_index = partition(arr, low, high);
+                
+                        if (pivot_index - 1 > low) {
+                            stack[++top] = low;
+                            stack[++top] = pivot_index - 1;
+                        }
+                        if (pivot_index + 1 < high) {
+                            stack[++top] = pivot_index + 1;
+                            stack[++top] = high;
+                        }
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of elements exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    int arr[MAX_SIZE];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    quick_sort_iterative(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nQuicksort Complexity:\n");
+                    printf("Best Case: O(n log n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n log n)\n");
+                
+                    return 0;
+                }
+                
+        </code></pre>
+        </div>
+        <div class="output-container" id="output9">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements (max 1000): 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Quicksort Complexity:
+            Best Case: O(n log n)
+            Worst Case: O(n^2)
+            Average Case: O(n log n)
+                
+        </code></pre>
+        </div> 
+
+        <div class="code-container" id="code10">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 1000 // Define a maximum size for the array
+                
+                void swap(int* a, int* b) {
+                    int temp = *a;
+                    *a = *b;
+                    *b = temp;
+                }
+                
+                int partition(int arr[], int low, int high) {
+                    int pivot = arr[high];
+                    int i = (low - 1);
+                    
+                    for (int j = low; j < high; j++) {
+                        if (arr[j] <= pivot) {
+                            i++;
+                            swap(&arr[i], &arr[j]);
+                        }
+                    }
+                    swap(&arr[i + 1], &arr[high]);
+                    return (i + 1);
+                }
+                
+                void quick_sort_recursive(int arr[], int low, int high) {
+                    if (low < high) {
+                        int pivot_index = partition(arr, low, high);
+                        
+                        quick_sort_recursive(arr, low, pivot_index - 1);
+                        quick_sort_recursive(arr, pivot_index + 1, high);
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of elements (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of elements exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    int arr[MAX_SIZE];
+                
+                    printf("Enter %d integers:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        scanf("%d", &arr[i]);
+                    }
+                
+                    clock_t start = clock();
+                    quick_sort_recursive(arr, 0, n - 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted array:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%d ", arr[i]);
+                    }
+                    printf("\nTime taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nQuicksort Complexity:\n");
+                    printf("Best Case: O(n log n)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n log n)\n");
+                
+                    return 0;
+                }
+                       
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output10">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of elements (max 1000): 5
+            Enter 5 integers:
+            34 7 23 32 5
+            Sorted array:
+            5 7 23 32 34
+            Time taken for sorting: 0.000123 seconds
+            
+            Quicksort Complexity:
+            Best Case: O(n log n)
+            Worst Case: O(n^2)
+            Average Case: O(n log n)
+                   
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code11">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100 
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int compare_strings(char a[], char b[]) {
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        if (a[i] == '\0') break;
+                    }
+                    return 0;
+                }
+                
+                void selection_sort(char arr[][MAX_LENGTH], int n) {
+                    for (int i = 0; i < n - 1; i++) {
+                        int min_index = i;
+                        for (int j = i + 1; j < n; j++) {
+                            if (compare_strings(arr[j], arr[min_index]) < 0) {
+                                min_index = j;
+                            }
+                        }
+                        if (min_index != i) {
+                            swap(arr[i], arr[min_index]);
+                        }
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    selection_sort(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nSelection Sort Complexity:\n");
+                    printf("Best Case: O(n^2)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                      
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output11">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Selection Sort Complexity:
+            Best Case: O(n^2)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                  
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code12">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include <stdio.h>
+                #include <time.h>
+                
+                #define MAX_SIZE 100 // Maximum number of strings
+                #define MAX_LENGTH 100 // Maximum length of each string
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int compare_strings(char a[], char b[]) {
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        if (a[i] == '\0') break;
+                    }
+                    return 0;
+                }
+                
+                void selection_sort_recursive(char arr[][MAX_LENGTH], int n, int index) {
+                    if (index >= n - 1) return;
+                
+                    int min_index = index;
+                    for (int j = index + 1; j < n; j++) {
+                        if (compare_strings(arr[j], arr[min_index]) < 0) {
+                            min_index = j;
+                        }
+                    }
+                    
+                    if (min_index != index) {
+                        swap(arr[index], arr[min_index]);
+                    }
+                    
+                    selection_sort_recursive(arr, n, index + 1);
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; 
+                    }
+                
+                    clock_t start = clock();
+                    selection_sort_recursive(arr, n, 0);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                
+                    printf("\nSelection Sort Complexity:\n");
+                    printf("Best Case: O(n^2)\n");
+                    printf("Worst Case: O(n^2)\n");
+                    printf("Average Case: O(n^2)\n");
+                
+                    return 0;
+                }
+                       
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output12">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Selection Sort Complexity:
+            Best Case: O(n^2)
+            Worst Case: O(n^2)
+            Average Case: O(n^2)
+                  
+        </code></pre>
+        </div>  
+        <div class="code-container" id="code13">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100 
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int compare_strings(char a[], char b[]) {
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        if (a[i] == '\0') break;
+                    }
+                    return 0;
+                }
+                
+                void bubble_sort(char arr[][MAX_LENGTH], int n) {
+                    for (int i = 0; i < n - 1; i++) {
+                        for (int j = 0; j < n - 1 - i; j++) {
+                            if (compare_strings(arr[j], arr[j + 1]) > 0) {
+                                swap(arr[j], arr[j + 1]);
+                            }
+                        }
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    bubble_sort(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nBubble Sort Complexity:\n");
+                    printf("Best Case: O(n) when the array is already sorted.\n");
+                    printf("Worst Case: O(n^2) when the array is sorted in reverse order.\n");
+                    printf("Average Case: O(n^2).\n");
+                
+                    return 0;
+                }
+                     
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output13">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Bubble Sort Complexity:
+            Best Case: O(n) when the array is already sorted.
+            Worst Case: O(n^2) when the array is sorted in reverse order.
+            Average Case: O(n^2).
+                   
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code14">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100
+                #define MAX_LENGTH 100 
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int compare_strings(char a[], char b[]) {
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        if (a[i] == '\0') break;
+                    }
+                    return 0;
+                }
+                
+                void bubble_sort_recursive(char arr[][MAX_LENGTH], int n, int i) {
+                    if (i == n - 1) return; // Base case
+                
+                    for (int j = 0; j < n - 1 - i; j++) {
+                        if (compare_strings(arr[j], arr[j + 1]) > 0) {
+                            swap(arr[j], arr[j + 1]);
+                        }
+                    }
+                    
+                    bubble_sort_recursive(arr, n, i + 1); // Recursive call
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    bubble_sort_recursive(arr, n, 0);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nBubble Sort Complexity:\n");
+                    printf("Best Case: O(n) when the array is already sorted.\n");
+                    printf("Worst Case: O(n^2) when the array is sorted in reverse order.\n");
+                    printf("Average Case: O(n^2).\n");
+                
+                    return 0;
+                }
+                
+        </code></pre>
+        </div>
+        <div class="output-container" id="output14">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Bubble Sort Complexity:
+            Best Case: O(n) when the array is already sorted.
+            Worst Case: O(n^2) when the array is sorted in reverse order.
+            Average Case: O(n^2).
+               
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code15">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100 
+                
+                void insertion_sort(char arr[][MAX_LENGTH], int n) {
+                    for (int i = 1; i < n; i++) {
+                        char key[MAX_LENGTH];
+                        strcpy(key, arr[i]);
+                        int j = i - 1;
+                
+                        while (j >= 0 && strcmp(arr[j], key) > 0) {
+                            strcpy(arr[j + 1], arr[j]);
+                            j--;
+                        }
+                        strcpy(arr[j + 1], key);
+                    }
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    insertion_sort(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nInsertion Sort Complexity:\n");
+                    printf("Best Case: O(n) when the array is already sorted.\n");
+                    printf("Worst Case: O(n^2) when the array is sorted in reverse order.\n");
+                    printf("Average Case: O(n^2).\n");
+                
+                    return 0;
+                }
+                    
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output15">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Insertion Sort Complexity:
+            Best Case: O(n) when the array is already sorted.
+            Worst Case: O(n^2) when the array is sorted in reverse order.
+            Average Case: O(n^2).
+                  
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code16">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100 
+                
+                void copy_string(char dest[], const char src[]) {
+                    int i = 0;
+                    while (src[i] != '\0' && i < MAX_LENGTH) {
+                        dest[i] = src[i];
+                        i++;
+                    }
+                    dest[i] = '\0';
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    if (a[i] == '\0' && b[i] == '\0') return 0;
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                void insertion_sort_recursive(char arr[][MAX_LENGTH], int n, int index) {
+                    if (index >= n) return; // Base case
+                
+                    char key[MAX_LENGTH];
+                    copy_string(key, arr[index]);
+                    int j = index - 1;
+                
+                    while (j >= 0 && compare_strings(arr[j], key) > 0) {
+                        copy_string(arr[j + 1], arr[j]);
+                        j--;
+                    }
+                    copy_string(arr[j + 1], key);
+                
+                    // Recursive call for the next index
+                    insertion_sort_recursive(arr, n, index + 1);
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    insertion_sort_recursive(arr, n, 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nInsertion Sort Complexity:\n");
+                    printf("Best Case: O(n) when the array is already sorted.\n");
+                    printf("Worst Case: O(n^2) when the array is sorted in reverse order.\n");
+                    printf("Average Case: O(n^2).\n");
+                
+                    return 0;
+                }
+                     
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output16">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Insertion Sort Complexity:
+            Best Case: O(n) when the array is already sorted.
+            Worst Case: O(n^2) when the array is sorted in reverse order.
+            Average Case: O(n^2).
+                   
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code17">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 // Maximum number of strings
+                #define MAX_LENGTH 100 // Maximum length of each string
+                
+                void merge(char arr[][MAX_LENGTH], int left, int mid, int right) {
+                    int i, j, k;
+                    int n1 = mid - left + 1;
+                    int n2 = right - mid;
+                
+                    char L[MAX_SIZE][MAX_LENGTH], R[MAX_SIZE][MAX_LENGTH];
+                
+                    for (i = 0; i < n1; i++)
+                        strcpy(L[i], arr[left + i]);
+                    for (j = 0; j < n2; j++)
+                        strcpy(R[j], arr[mid + 1 + j]);
+                
+                    i = 0;
+                    j = 0;
+                    k = left;
+                
+                    while (i < n1 && j < n2) {
+                        if (compare_strings(L[i], R[j]) <= 0) {
+                            strcpy(arr[k], L[i]);
+                            i++;
+                        } else {
+                            strcpy(arr[k], R[j]);
+                            j++;
+                        }
+                        k++;
+                    }
+                
+                    while (i < n1) {
+                        strcpy(arr[k], L[i]);
+                        i++;
+                        k++;
+                    }
+                
+                    while (j < n2) {
+                        strcpy(arr[k], R[j]);
+                        j++;
+                        k++;
+                    }
+                }
+                
+                void merge_sort_iterative(char arr[][MAX_LENGTH], int n) {
+                    int curr_size;
+                    int left_start;
+                
+                    for (curr_size = 1; curr_size < n; curr_size *= 2) {
+                        for (left_start = 0; left_start < n - 1; left_start += 2 * curr_size) {
+                            int mid = left_start + curr_size - 1;
+                            int right_end = ((left_start + 2 * curr_size - 1) < (n - 1)) ? (left_start + 2 * curr_size - 1) : (n - 1);
+                
+                            if (mid < right_end)
+                                merge(arr, left_start, mid, right_end);
+                        }
+                    }
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    merge_sort_iterative(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nMerge Sort Complexity:\n");
+                    printf("Best Case: O(n log n).\n");
+                    printf("Worst Case: O(n log n).\n");
+                    printf("Average Case: O(n log n).\n");
+                
+                    return 0;
+                }
+                     
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output17">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Merge Sort Complexity:
+            Best Case: O(n log n).
+            Worst Case: O(n log n).
+            Average Case: O(n log n).
+                
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code18">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100 
+                
+                void merge(char arr[][MAX_LENGTH], int left, int mid, int right) {
+                    int i, j, k;
+                    int n1 = mid - left + 1;
+                    int n2 = right - mid;
+                
+                    char L[MAX_SIZE][MAX_LENGTH], R[MAX_SIZE][MAX_LENGTH];
+                
+                    for (i = 0; i < n1; i++)
+                        for (j = 0; j < MAX_LENGTH; j++)
+                            L[i][j] = arr[left + i][j];
+                
+                    for (j = 0; j < n2; j++)
+                        for (i = 0; i < MAX_LENGTH; i++)
+                            R[j][i] = arr[mid + 1 + j][i];
+                
+                    i = 0; 
+                    j = 0; 
+                    k = left;
+                
+                    while (i < n1 && j < n2) {
+                        if (compare_strings(L[i], R[j]) <= 0) {
+                            for (int l = 0; l < MAX_LENGTH; l++)
+                                arr[k][l] = L[i][l];
+                            i++;
+                        } else {
+                            for (int l = 0; l < MAX_LENGTH; l++)
+                                arr[k][l] = R[j][l];
+                            j++;
+                        }
+                        k++;
+                    }
+                
+                    while (i < n1) {
+                        for (int l = 0; l < MAX_LENGTH; l++)
+                            arr[k][l] = L[i][l];
+                        i++;
+                        k++;
+                    }
+                
+                    while (j < n2) {
+                        for (int l = 0; l < MAX_LENGTH; l++)
+                            arr[k][l] = R[j][l];
+                        j++;
+                        k++;
+                    }
+                }
+                
+                void merge_sort_recursive(char arr[][MAX_LENGTH], int left, int right) {
+                    if (left < right) {
+                        int mid = left + (right - left) / 2;
+                
+                        merge_sort_recursive(arr, left, mid);
+                        merge_sort_recursive(arr, mid + 1, right);
+                        merge(arr, left, mid, right);
+                    }
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    merge_sort_recursive(arr, 0, n - 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nMerge Sort Complexity:\n");
+                    printf("Best Case: O(n log n).\n");
+                    printf("Worst Case: O(n log n).\n");
+                    printf("Average Case: O(n log n).\n");
+                
+                    return 0;
+                }
+                  
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output18">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Merge Sort Complexity:
+            Best Case: O(n log n).
+            Worst Case: O(n log n).
+            Average Case: O(n log n).
+                
+        </code></pre>
+        </div>  
+        <div class="code-container" id="code19">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100 
+                #define MAX_LENGTH 100
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int partition(char arr[][MAX_LENGTH], int low, int high) {
+                    char pivot[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        pivot[i] = arr[high][i];
+                    }
+                    
+                    int i = (low - 1);
+                    for (int j = low; j < high; j++) {
+                        if (compare_strings(arr[j], pivot) <= 0) {
+                            i++;
+                            swap(arr[i], arr[j]);
+                        }
+                    }
+                    swap(arr[i + 1], arr[high]);
+                    return (i + 1);
+                }
+                
+                void quick_sort_iterative(char arr[][MAX_LENGTH], int n) {
+                    int stack[MAX_SIZE];
+                    int top = -1;
+                    stack[++top] = 0;
+                    stack[++top] = n - 1;
+                
+                    while (top >= 0) {
+                        int high = stack[top--];
+                        int low = stack[top--];
+                
+                        int pivot_index = partition(arr, low, high);
+                
+                        if (pivot_index - 1 > low) {
+                            stack[++top] = low;
+                            stack[++top] = pivot_index - 1;
+                        }
+                        if (pivot_index + 1 < high) {
+                            stack[++top] = pivot_index + 1;
+                            stack[++top] = high;
+                        }
+                    }
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    quick_sort_iterative(arr, n);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nQuick Sort Complexity:\n");
+                    printf("Best Case: O(n log n).\n");
+                    printf("Worst Case: O(n^2) when the pivot is the smallest or largest element repeatedly.\n");
+                    printf("Average Case: O(n log n).\n");
+                
+                    return 0;
+                }
+                     
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output19">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            Enter the number of strings (max 100): 3
+            Enter 3 strings:
+            banana
+            apple
+            cherry
+            Sorted strings:
+            apple
+            banana
+            cherry
+            Time taken for sorting: 0.000123 seconds
+            
+            Quick Sort Complexity:
+            Best Case: O(n log n).
+            Worst Case: O(n^2) when the pivot is the smallest or largest element repeatedly.
+            Average Case: O(n log n).
+               
+        </code></pre>
+        </div> 
+        <div class="code-container" id="code20">
+            <h2>Code</h2>
+            <pre>
+        <code> 
+            #include < stdio.h>
+                #include < time.h>
+                
+                #define MAX_SIZE 100
+                #define MAX_LENGTH 100 
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int partition(char arr[][MAX_LENGTH], int low, int high) {
+                    char pivot[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        pivot[i] = arr[high][i];
+                    }
+                    
+                    int i = (low - 1);
+                    for (int j = low; j < high; j++) {
+                        if (compare_strings(arr[j], pivot) <= 0) {
+                            i++;
+                            swap(arr[i], arr[j]);
+                        }
+                    }
+                    swap(arr[i + 1], arr[high]);
+                    return (i + 1);
+                }
+                
+                void quick_sort_recursive(char arr[][MAX_LENGTH], int low, int high) {
+                    if (low < high) {
+                        int pivot_index = partition(arr, low, high);
+                        quick_sort_recursive(arr, low, pivot_index - 1);
+                        quick_sort_recursive(arr, pivot_index + 1, high);
+                    }
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    quick_sort_recursive(arr, 0, n - 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nQuick Sort Complexity:\n");
+                    printf("Best Case: O(n log n).\n");
+                    printf("Worst Case: O(n^2) when the pivot is the smallest or largest element repeatedly.\n");
+                    printf("Average Case: O(n log n).\n");
+                
+                    return 0;
+                }
+                      
+        
+        </code></pre>
+        </div>
+        <div class="output-container" id="output20">
+            <h2>Output</h2>
+            <pre>
+        <code>
+            #include <stdio.h>
+                #include <time.h>
+                
+                #define MAX_SIZE 100 // Maximum number of strings
+                #define MAX_LENGTH 100 // Maximum length of each string
+                
+                void swap(char a[], char b[]) {
+                    char temp[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        temp[i] = a[i];
+                        a[i] = b[i];
+                        b[i] = temp[i];
+                    }
+                }
+                
+                int partition(char arr[][MAX_LENGTH], int low, int high) {
+                    char pivot[MAX_LENGTH];
+                    for (int i = 0; i < MAX_LENGTH; i++) {
+                        pivot[i] = arr[high][i];
+                    }
+                    
+                    int i = (low - 1);
+                    for (int j = low; j < high; j++) {
+                        if (compare_strings(arr[j], pivot) <= 0) {
+                            i++;
+                            swap(arr[i], arr[j]);
+                        }
+                    }
+                    swap(arr[i + 1], arr[high]);
+                    return (i + 1);
+                }
+                
+                void quick_sort_recursive(char arr[][MAX_LENGTH], int low, int high) {
+                    if (low < high) {
+                        int pivot_index = partition(arr, low, high);
+                        quick_sort_recursive(arr, low, pivot_index - 1);
+                        quick_sort_recursive(arr, pivot_index + 1, high);
+                    }
+                }
+                
+                int compare_strings(const char a[], const char b[]) {
+                    int i = 0;
+                    while (a[i] != '\0' && b[i] != '\0') {
+                        if (a[i] < b[i]) return -1;
+                        if (a[i] > b[i]) return 1;
+                        i++;
+                    }
+                    return (a[i] == '\0') ? -1 : 1; // If one is longer
+                }
+                
+                int main() {
+                    int n;
+                
+                    printf("Enter the number of strings (max %d): ", MAX_SIZE);
+                    scanf("%d", &n);
+                    getchar(); // To consume the newline character left by scanf
+                
+                    if (n > MAX_SIZE) {
+                        printf("Error: Number of strings exceeds maximum size.\n");
+                        return 1;
+                    }
+                
+                    char arr[MAX_SIZE][MAX_LENGTH];
+                
+                    printf("Enter %d strings:\n", n);
+                    for (int i = 0; i < n; i++) {
+                        fgets(arr[i], MAX_LENGTH, stdin);
+                        arr[i][strcspn(arr[i], "\n")] = 0; // Remove the newline character
+                    }
+                
+                    clock_t start = clock();
+                    quick_sort_recursive(arr, 0, n - 1);
+                    clock_t end = clock();
+                
+                    double time_taken = (double)(end - start) / CLOCKS_PER_SEC;
+                
+                    printf("Sorted strings:\n");
+                    for (int i = 0; i < n; i++) {
+                        printf("%s\n", arr[i]);
+                    }
+                
+                    printf("Time taken for sorting: %f seconds\n", time_taken);
+                    printf("\nQuick Sort Complexity:\n");
+                    printf("Best Case: O(n log n).\n");
+                    printf("Worst Case: O(n^2) when the pivot is the smallest or largest element repeatedly.\n");
+                    printf("Average Case: O(n log n).\n");
+                
+                    return 0;
+                }
+                      
+        </code></pre>
+        </div>  
+    </div>
+</div>
+</body>
+</html>      
